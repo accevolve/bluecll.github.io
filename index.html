@@ -95,7 +95,7 @@
 <script src="js/jquery.xml2json.js"></script>
 <script src="js/jquery.json2xml.js"></script>
 <script src="http://cdn.bootcss.com/json2/20150503/json2.min.js"></script>
-<script src="http://cdn.bootcss.com/jsonlint/1.6.0/jsonlint.min.js"></script>
+<!-- <script src="http://cdn.bootcss.com/jsonlint/1.6.0/jsonlint.min.js"></script> -->
 <script type="text/javascript">
 var current_json = '';
 var current_json_str = '';
@@ -126,8 +126,8 @@ $('#json-src').keyup(function(){
 
         }
         try{
-            current_json = jsonlint.parse(content);
-            current_json_str = JSON.stringify(current_json);
+            //current_json = jsonlint.parse(content);
+            //current_json_str = JSON.stringify(current_json);
             //current_json = JSON.parse(content);
             result = new JSONFormat(content,4).toString();
         }catch(e){
