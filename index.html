@@ -14,6 +14,10 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/layer/3.5.1/layer.js"></script>
+
+  <script src="http://cdn.bootcss.com/json2/20150503/json2.min.js"></script>
+  <script src="http://cdn.bootcss.com/jsonlint/1.6.0/jsonlint.min.js"></script>
+
   <script type="text/javascript" src="js/main.js"></script>
   <style type="text/css">
   /*正文样式*/
@@ -58,7 +62,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">JSON 在线解析</a>
+        <a class="navbar-brand" href="#">JSON 在线解析、格式化</a>
     </div><!-- /.navbar-header -->
     <div id="navbar" class="collapse navbar-collapse navbar-right">
       <ul class="nav navbar-nav">
@@ -94,8 +98,6 @@
 <script src="js/jquery.json.js"></script>
 <script src="js/jquery.xml2json.js"></script>
 <script src="js/jquery.json2xml.js"></script>
-<script src="http://cdn.bootcss.com/json2/20150503/json2.min.js"></script>
-<!-- <script src="http://cdn.bootcss.com/jsonlint/1.6.0/jsonlint.min.js"></script> -->
 <script type="text/javascript">
 var current_json = '';
 var current_json_str = '';
@@ -126,8 +128,8 @@ $('#json-src').keyup(function(){
 
         }
         try{
-            //current_json = jsonlint.parse(content);
-            //current_json_str = JSON.stringify(current_json);
+            current_json = jsonlint.parse(content);
+            current_json_str = JSON.stringify(current_json);
             //current_json = JSON.parse(content);
             result = new JSONFormat(content,4).toString();
         }catch(e){
