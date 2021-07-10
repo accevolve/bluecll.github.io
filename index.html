@@ -110,7 +110,7 @@
             <a href="#" class="xml" title="转XML"  data-placement="bottom"><i class="fa fa-file-excel-o"></i></a>
             <a href="#" class="copy" title="复制" data-clipboard-target="#json-target" data-placement="bottom"><i class="fa fa-copy"></i></a>
             <a href="#" class="clear" title="清空"  data-placement="bottom"><i class="fa fa-eraser"></i></a>
-            <a href="#" class="fullScreen" title="全屏" data-placement="bottom"><i class="fa fa-arrows-alt"></i></a>
+            <a href="#" class="fullScreen" title="全屏" data-placement="bottom" style="cursor:no-drop;"><i class="fa fa-arrows-alt"></i></a>
         </div>
         <div id="json-target" class="ro adapter_height" style="padding:20px;border-right:solid 1px #ddd;border-bottom:solid 1px #ddd;border-radius:0;resize: none;overflow-y:scroll; outline:none;">
         </div>
@@ -165,6 +165,15 @@ $('#json-src').keyup(function(){
     }
 
 });
+$('.zip').click(function(){
+    if (zip_flag) {
+        $('#json-src').keyup();
+    }else{
+        $('#json-target').html(current_json_str);
+        zip_flag = true;
+        $(this).attr('style','color:#15b374;');
+    }
+});
 $('.xml').click(function(){
     if (xml_flag) {
         $('#json-src').keyup();
@@ -193,25 +202,15 @@ clipboard.on('error', function(e) {
 //           .tooltip('fixTitle')
 //           .tooltip('toggle');
 // });
-$('.zip').click(function(){
-    if (zip_flag) {
-        $('#json-src').keyup();
-    }else{
-        $('#json-target').html(current_json_str);
-        zip_flag = true;
-        $(this).attr('style','color:#15b374;');
-    }
-
-});
 $('.clear').click(function(){
      $('#json-src').val('');
      $('#json-target').html('');
 });
-$('.save').click(function(){
-    var content = JSON.stringify(current_json);
-    $('#txt-content').val(content);
-    $("#form-save").submit();
-});
+// $('.save').click(function(){
+//     var content = JSON.stringify(current_json);
+//     $('#txt-content').val(content);
+//     $("#form-save").submit();
+// });
 
 $('#json-src').keyup();
 
