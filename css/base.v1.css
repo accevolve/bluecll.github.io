@@ -81,10 +81,17 @@ body {
   .navbar-text{letter-spacing: 1px; font-style: italic;font-size: 4px;font-family: "Arial";}
 }
 
-.footer {
+.fixed_footer {
   position: fixed; /* 固定定位 */
   bottom: 0;       /* 紧贴底部 */
   left: 0;         /* 紧贴左侧 */
+  width: 100%;     /* 宽度100% */
+  text-align: center; /* 水平居中 */
+  line-height: 40px; /* 垂直居中，假设footer的高度是40px */
+  background: #f8f8f8; /* 背景颜色 */
+}
+
+.float_footer {
   width: 100%;     /* 宽度100% */
   text-align: center; /* 水平居中 */
   line-height: 40px; /* 垂直居中，假设footer的高度是40px */
