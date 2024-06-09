@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <title>JSON 小白入门教程</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description" content="JsonTool.cn - 最简洁的 JSON 在线解析工具，致力于成为最快、最方便的在线 JSON 解析网站。本站现提供 JSON 在线解析、格式化、校验、压缩、编辑、美化、JSON 转 XML 等服务。" />
+  <meta name="keywords" content="json.cn,json cn,JSON在线解析,JSON格式化,JSON教程,JSON入门教程,json tool" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+  <meta name="baidu-site-verification" content="code-K26efHPQnS" />
+
+  <link rel="shortcut icon" href="/img/favicon.ico" />
+  <link rel="bookmark" href="/img/favicon.ico" type="image/x-icon" />
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="../../css/base.v3.css" />
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?267ef29dfb3196f78212c359de75eb55";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+  <!--         <a class="navbar-brand" href="#">
+          <img alt="Brand" src="img/logo.png" height=40 width=200>
+        </a> -->
+          <a class="navbar-brand" href="/" text="Jsontool.cn">Jsontool.cn</a>
+          <!-- <p class="navbar-text">JSON 在线解析、格式化、校验</p> -->
+      </div><!-- /.navbar-header -->
+      <div id="navbar" class="collapse navbar-collapse navbar-right">
+        <ul class="nav navbar-nav">
+          <li><a href="/" target="_blank">首页</a></li>
+          <li><a href="../index.html" target="_blank">教程</a></li>
+          <li><a href="mailto:jsontool@163.com">投诉/建议</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container -->
+  </nav>
+
+
+  <!-- 主要内容区域 -->
+  <main class="row-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 左侧课程目录 -->
+            <div class="col-md-3 p-3 bg-light">
+                <h3>课程目录</h3>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="./index.html">课程介绍</a></li>
+                    <li class="list-group-item"><a href="./json-intro.html">第1天：JSON简介</a></li>
+                    <li class="list-group-item"><a href="./json-syntax.html">第2天：JSON语法基础</a></li>
+                    <li class="list-group-item"><a href="./json-data-type.html">第3天：数据类型</a></li>
+                </ul>
+            </div>
+
+            <!-- 右侧具体内容 -->
+            <div class="col-md-9 p-3">
+              <h1 id="-3-">第3天：数据类型</h1>
+<h2 id="-">数据类型概览</h2>
+<p>在JSON中，数据的表达方式和数据类型有着严格的规定。掌握JSON支持的数据类型对于创建有效且语义清晰的JSON数据至关重要。今天，我们将深入了解JSON支持的几种基础数据类型：字符串、数字、布尔值、null。</p>
+<h2 id="-string-">字符串（String）</h2>
+<p>字符串是JSON中最常见的数据类型之一，用于表示文本数据。在JSON中，字符串由双引号（<code>&quot;</code>）包围。</p>
+<h3 id="-">示例：字符串</h3>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"greeting"</span>: <span class="hljs-string">"Hello, World!"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"John Doe"</span>,
+  <span class="hljs-attr">"city"</span>: <span class="hljs-string">"New York"</span>
+}
+</code></pre>
+<p>在上述示例中，<code>greeting</code>、<code>name</code>和<code>city</code>都是字符串类型的键，对应的值也是字符串。</p>
+<h2 id="-number-">数字（Number）</h2>
+<p>数字在JSON中表示为数值，可以是整数或浮点数。与大多数编程语言一样，JSON中的数字没有引号。</p>
+<h3 id="-">示例：数字</h3>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"age"</span>: <span class="hljs-number">30</span>,
+  <span class="hljs-attr">"height"</span>: <span class="hljs-number">175.5</span>,
+  <span class="hljs-attr">"temperature"</span>: <span class="hljs-number">-4</span>
+}
+</code></pre>
+<p>这里，<code>age</code>、<code>height</code>和<code>temperature</code>都是数字类型的值。</p>
+<h2 id="-boolean-">布尔值（Boolean）</h2>
+<p>布尔值用于表示逻辑值，它只有两个可能的值：<code>true</code>和<code>false</code>。</p>
+<h3 id="-">示例：布尔值</h3>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"isStudent"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"isMarried"</span>: <span class="hljs-literal">false</span>
+}
+</code></pre>
+<p>在这个例子中，<code>isStudent</code>和<code>isMarried</code>是布尔类型的键。</p>
+<h2 id="null">null</h2>
+<p><code>null</code>在JSON中表示一个空值或不存在的值。它常用于标记一个字段的存在但值的缺失。</p>
+<h3 id="-null">示例：null</h3>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"username"</span>: <span class="hljs-string">"kimi"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-literal">null</span>
+}
+</code></pre>
+<p>这里，<code>email</code>字段被赋值为<code>null</code>，表示用户没有提供电子邮件地址。</p>
+<h2 id="-">数据类型的应用</h2>
+<p>理解每种数据类型的用途和适用场景对于编写清晰的JSON数据至关重要。例如，当你需要存储一个人的姓名时，应使用字符串类型；当你需要存储年龄时，应使用数字类型；当你需要表示一个开关状态时，布尔值是最佳选择。</p>
+<h2 id="-">深入理解</h2>
+<p>每种数据类型在JSON中都有其特定的规则和限制。例如，字符串中可以包含转义字符，如<code>\n</code>表示换行，<code>\t</code>表示制表符。数字类型在JSON中没有前导零或负号的规则，且不允许使用科学计数法或任何形式的引号。</p>
+<h2 id="-">结论</h2>
+<p>通过今天的学习，我们对JSON支持的数据类型有了全面的了解。我们学习了字符串、数字、布尔值和null的概念和用法，并通过示例加深了理解。这些知识将帮助你在实际开发中正确地使用JSON数据类型。</p>
+<p>明天，我们将进入更深入的主题——对象和数组的嵌套。这将是一个挑战，但也是一个提高你JSON技能的绝佳机会。请继续关注，准备好迎接新的学习内容！</p>
+<hr>
+<p>以上就是我们第三天课程的全部内容。希望您觉得有帮助，并为接下来的学习做好准备。如果您有任何疑问或需要进一步的解释，请随时联系我们。明天见！</p>
+
+            </div>
+        </div>
+    </div>
+  </main>
+
+
+<!--footer start-->
+<footer class="float_footer">
+    <div id="copyright">
+        &copy; 2021<script>new Date().getFullYear()>2021&&document.write("-"+new Date().getFullYear());</script> <a href="/">JsonTool.cn</a>, All rights reserved.
+    </div>
+</footer>
+</body>
+</html>
