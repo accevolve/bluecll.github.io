@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <title>JSON 小白入门教程</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description" content="JsonTool.cn - 最简洁的 JSON 在线解析工具，致力于成为最快、最方便的在线 JSON 解析网站。本站现提供 JSON 在线解析、格式化、校验、压缩、编辑、美化、JSON 转 XML 等服务。" />
+  <meta name="keywords" content="json.cn,json cn,JSON在线解析,JSON格式化,JSON教程,JSON入门教程,json tool" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+  <meta name="baidu-site-verification" content="code-K26efHPQnS" />
+
+  <link rel="shortcut icon" href="/img/favicon.ico" />
+  <link rel="bookmark" href="/img/favicon.ico" type="image/x-icon" />
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="../../css/base.v3.css" />
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?267ef29dfb3196f78212c359de75eb55";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+  <!--         <a class="navbar-brand" href="#">
+          <img alt="Brand" src="img/logo.png" height=40 width=200>
+        </a> -->
+          <a class="navbar-brand" href="/" text="Jsontool.cn">Jsontool.cn</a>
+          <!-- <p class="navbar-text">JSON 在线解析、格式化、校验</p> -->
+      </div><!-- /.navbar-header -->
+      <div id="navbar" class="collapse navbar-collapse navbar-right">
+        <ul class="nav navbar-nav">
+          <li><a href="/" target="_blank">首页</a></li>
+          <li><a href="../index.html" target="_blank">教程</a></li>
+          <li><a href="mailto:jsontool@163.com">投诉/建议</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container -->
+  </nav>
+
+
+  <!-- 主要内容区域 -->
+  <main class="row-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 左侧课程目录 -->
+            <div class="col-md-3 p-3 bg-light">
+                <h3>课程目录</h3>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="./index.html">课程介绍</a></li>
+                    <li class="list-group-item"><a href="./json-intro.html">第1天：JSON简介</a></li>
+                    <li class="list-group-item"><a href="./json-syntax.html">第2天：JSON语法基础</a></li>
+                    <li class="list-group-item"><a href="./json-data-type.html">第3天：数据类型</a></li>
+                    <li class="list-group-item"><a href="./json-object-array.html">第4天：对象和数组的深入</a></li>
+                </ul>
+            </div>
+
+            <!-- 右侧具体内容 -->
+            <div class="col-md-9 p-3">
+              <h1 id="-4-">第4天：对象和数组的深入</h1>
+<h2 id="-">嵌套概览</h2>
+<p>在JSON中，对象和数组可以相互嵌套，形成复杂的数据结构。这种特性使得JSON非常适合表示层次化的数据，如用户信息、组织结构等。今天，我们将深入探讨对象和数组的嵌套，以及如何使用它们来构建复杂的数据模型。</p>
+<h2 id="-">对象的嵌套</h2>
+<p>对象的嵌套意味着在一个对象中包含另一个对象。这使得我们可以创建包含多个层次的数据结构。</p>
+<h3 id="-">示例：嵌套对象</h3>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"person"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Alice"</span>,
+    <span class="hljs-attr">"age"</span>: <span class="hljs-number">30</span>,
+    <span class="hljs-attr">"contact"</span>: {
+      <span class="hljs-attr">"email"</span>: <span class="hljs-string">"alice@example.com"</span>,
+      <span class="hljs-attr">"phone"</span>: <span class="hljs-string">"123-456-7890"</span>
+    },
+    <span class="hljs-attr">"education"</span>: {
+      <span class="hljs-attr">"university"</span>: <span class="hljs-string">"Example University"</span>,
+      <span class="hljs-attr">"degree"</span>: <span class="hljs-string">"Bachelor's"</span>
+    }
+  }
+}
+</code></pre>
+<p>在这个示例中，<code>person</code>对象包含了<code>contact</code>和<code>education</code>两个嵌套对象。</p>
+<h2 id="-">数组的嵌套</h2>
+<p>数组的嵌套意味着在数组中的某个元素是一个对象或另一个数组。这使得我们可以创建列表中包含复杂数据项的数据结构。</p>
+<h3 id="-">示例：数组嵌套对象</h3>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"company"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Example Corp"</span>,
+    <span class="hljs-attr">"employees"</span>: [
+      {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Bob Smith"</span>,
+        <span class="hljs-attr">"role"</span>: <span class="hljs-string">"Developer"</span>,
+        <span class="hljs-attr">"age"</span>: <span class="hljs-number">28</span>
+      },
+      {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Carol White"</span>,
+        <span class="hljs-attr">"role"</span>: <span class="hljs-string">"Designer"</span>,
+        <span class="hljs-attr">"age"</span>: <span class="hljs-number">32</span>
+      }
+    ]
+  }
+}
+</code></pre>
+<p>在这个示例中，<code>employees</code>数组包含了多个对象，每个对象代表一个员工的信息。</p>
+<h2 id="-">混合嵌套</h2>
+<p>在实际应用中，我们经常需要混合使用对象和数组的嵌套，以表示更复杂的数据结构。</p>
+<h3 id="-">示例：混合嵌套</h3>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"company"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Tech Innovations"</span>,
+    <span class="hljs-attr">"departments"</span>: [
+      {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Engineering"</span>,
+        <span class="hljs-attr">"manager"</span>: <span class="hljs-string">"Alice"</span>,
+        <span class="hljs-attr">"team"</span>: [
+          {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Bob"</span>,
+            <span class="hljs-attr">"role"</span>: <span class="hljs-string">"Senior Developer"</span>
+          },
+          {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Carol"</span>,
+            <span class="hljs-attr">"role"</span>: <span class="hljs-string">"QA Engineer"</span>
+          }
+        ]
+      },
+      {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Design"</span>,
+        <span class="hljs-attr">"manager"</span>: <span class="hljs-string">"Dave"</span>,
+        <span class="hljs-attr">"team"</span>: [
+          {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Eve"</span>,
+            <span class="hljs-attr">"role"</span>: <span class="hljs-string">"UX Designer"</span>
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<p>在这个示例中，<code>departments</code>数组中的每个对象都包含了一个<code>team</code>数组，而每个<code>team</code>数组又包含了多个对象。</p>
+<h2 id="-">嵌套的用途</h2>
+<p>嵌套在JSON中非常有用，因为它允许我们以一种结构化的方式表示复杂的数据。例如，在Web API中，嵌套可以用来表示一个用户的所有信息，包括个人资料、联系方式、教育背景等。</p>
+<h2 id="-">结论</h2>
+<p>通过今天的学习，我们深入了解了JSON对象和数组的嵌套，以及如何使用它们来构建复杂的数据结构。我们通过示例学习了嵌套对象、嵌套数组以及混合嵌套的概念和应用。</p>
+<p>明天，我们将进入JSON与JavaScript的交互，学习如何在JavaScript中解析和生成JSON数据。这将是一个将JSON知识应用于实际编程任务的重要一步。请继续关注，准备好学习新的技能！</p>
+<hr>
+<p>以上就是我们第四天课程的全部内容。希望您觉得有帮助，并为接下来的学习做好准备。如果您有任何疑问或需要进一步的解释，请随时联系我们。明天见！</p>
+
+            </div>
+        </div>
+    </div>
+  </main>
+
+
+<!--footer start-->
+<footer class="float_footer">
+    <div id="copyright">
+        &copy; 2021<script>new Date().getFullYear()>2021&&document.write("-"+new Date().getFullYear());</script> <a href="/">JsonTool.cn</a>, All rights reserved.
+    </div>
+</footer>
+</body>
+</html>
