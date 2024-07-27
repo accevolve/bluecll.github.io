@@ -77,34 +77,59 @@
 
             <!-- 右侧具体内容 -->
             <div class="col-md-9 p-3">
-              <h1 id="-7-json-web-">第7天：JSON与Web开发</h1>
+              <h1 id="-11-json-">第11天：JSON安全</h1>
 <h2 id="-">概述</h2>
-<p>JSON在Web开发中的应用无处不在，特别是在数据交换和配置方面。今天，我们将探讨JSON在Web开发中的应用，重点关注它如何与APIs和Web服务协同工作，以及它对现代Web应用程序的影响。</p>
-<h2 id="json-apis-">JSON在APIs中的应用</h2>
-<p>应用程序接口（API）是软件组件之间通信的桥梁。在Web开发中，APIs常用于客户端和服务器之间的数据交换。</p>
-<h3 id="restful-apis">RESTful APIs</h3>
-<p>表现层状态转移（REST）是一种API设计风格，它使用标准的HTTP方法，如GET、POST、PUT和DELETE来获取或发送数据。JSON是RESTful APIs中最常用的数据格式之一。</p>
-<h4 id="-json-restful-api">示例：使用JSON的RESTful API</h4>
-<p>假设我们有一个获取用户信息的API：</p>
-<pre><code class="lang-http">GET <span class="hljs-regexp">/api/u</span>sers<span class="hljs-regexp">/123</span>
+<p>随着JSON在Web开发中的广泛应用，确保JSON数据的安全变得至关重要。今天的课程将介绍JSON数据的安全问题以及如何采取相应的防护措施，以保护数据不被未授权访问或篡改。</p>
+<h2 id="json-">JSON数据的安全挑战</h2>
+<p>JSON数据在Web应用中通常用于前后端之间的数据交换。由于其易于解析和生成，JSON也容易被攻击者利用。以下是一些常见的安全挑战：</p>
+<h3 id="-xss-">跨站脚本攻击（XSS）</h3>
+<ul>
+<li>攻击者可能会注入恶意脚本到JSON数据中，当这些数据被插入到Web页面时，脚本会被执行。</li>
+</ul>
+<h3 id="-csrf-">跨站请求伪造（CSRF）</h3>
+<ul>
+<li>攻击者可能会利用用户的登录状态，通过构造特定的JSON数据发起未授权的请求。</li>
+</ul>
+<h3 id="-">数据泄露</h3>
+<ul>
+<li>敏感信息（如密码或个人信息）可能会在JSON数据中被泄露。</li>
+</ul>
+<h3 id="-dos-">拒绝服务攻击（DoS）</h3>
+<ul>
+<li>攻击者可能会发送大量的恶意JSON数据，导致服务器资源耗尽。</li>
+</ul>
+<h2 id="-">安全防护措施</h2>
+<h3 id="-">输入验证</h3>
+<ul>
+<li>对所有接收的JSON数据进行严格的验证，确保它们符合预期的格式和类型。</li>
+</ul>
+<h3 id="-">输出编码</h3>
+<ul>
+<li>在将JSON数据插入到HTML或JavaScript中时，进行适当的编码，以防止XSS攻击。</li>
+</ul>
+<h3 id="-https">使用HTTPS</h3>
+<ul>
+<li>通过HTTPS传输JSON数据，确保数据在传输过程中的安全性。</li>
+</ul>
+<h3 id="-">访问控制</h3>
+<ul>
+<li>确保只有授权的用户才能访问敏感的JSON数据。</li>
+</ul>
+<h3 id="-">限制请求频率</h3>
+<ul>
+<li>通过限制请求频率，防止DoS攻击。</li>
+</ul>
+<h2 id="-xss-">示例：防止XSS攻击</h2>
+<h3 id="-json-">安全的JSON数据展示</h3>
+<pre><code class="lang-javascript">var jsonData = '{"name": "<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="undefined">alert(1)</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>"}';
+var safeData = JSON.parse(jsonData).name;
+console.log(safeData); // 输出: <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="undefined">alert(1)</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<p>服务器响应可能是：</p>
-<pre><code class="lang-json">{
-  <span class="hljs-attr">"id"</span>: <span class="hljs-number">123</span>,
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"John Doe"</span>,
-  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"johndoe@example.com"</span>
-}
-</code></pre>
-<p>这个响应是一个JSON对象，包含了用户的详细信息。</p>
-<h2 id="json-web-">JSON在Web服务中的应用</h2>
-<p>Web服务允许不同的应用程序通过网络进行交互。JSON作为一种轻量级的数据交换格式，在Web服务中得到了广泛应用。</p>
-<h3 id="soap-json">SOAP和JSON</h3>
-<p>简单对象访问协议（SOAP）是一种常用的Web服务协议，它通常使用XML作为数据格式。然而，由于JSON的简洁性，许多现代Web服务也开始支持JSON。</p>
-<h2 id="json-ajax">JSON与AJAX</h2>
-<p>异步JavaScript和XML（AJAX）是一种在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术。JSON是AJAX请求中常用的响应格式。</p>
-<h3 id="-ajax-json">示例：AJAX请求使用JSON</h3>
+<p>在这个示例中，我们从JSON字符串中解析出数据，并在控制台中安全地展示，而不是直接插入到HTML中。</p>
+<h2 id="-https-json-">示例：使用HTTPS传输JSON数据</h2>
+<h3 id="-api-">安全的API请求</h3>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
-xhr.open(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'api/data'</span>, <span class="hljs-literal">true</span>);
+xhr.open(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'https://api.example.com/data'</span>, <span class="hljs-literal">true</span>);
 xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.status === <span class="hljs-number">200</span>) {
     <span class="hljs-keyword">var</span> data = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-keyword">this</span>.responseText);
@@ -113,28 +138,24 @@ xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</sp
 };
 xhr.send();
 </code></pre>
-<p>在这个示例中，我们发起了一个AJAX请求，并在响应中解析JSON数据。</p>
-<h2 id="json-">JSON与前端框架</h2>
-<p>现代前端框架，如React、Angular和Vue.js，经常与JSON数据一起使用，以支持组件化和数据绑定。</p>
-<h3 id="-react-json">示例：React组件使用JSON</h3>
-<pre><code class="lang-jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">UserComponent</span>(<span class="hljs-params">{ user }</span>) </span>{
-  <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>{user.name}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{user.email}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-  );
-}
-
-<span class="hljs-comment">// 假设我们从API获取了用户数据</span>
-ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">UserComponent</span> <span class="hljs-attr">user</span>=<span class="hljs-string">{userData}</span> /&gt;</span>, document.getElementById('app'));</span>
+<p>在这个示例中，我们通过HTTPS发起了一个安全的API请求，并在响应中解析JSON数据。</p>
+<h2 id="json-">JSON数据的加密</h2>
+<h3 id="-">加密传输</h3>
+<ul>
+<li>对敏感的JSON数据进行加密，确保即使数据被截获，也无法被轻易解读。</li>
+</ul>
+<h3 id="-json-">示例：使用加密的JSON数据</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> encryptedData = <span class="hljs-string">'...'</span>; <span class="hljs-comment">// 假设这是加密后的JSON数据</span>
+<span class="hljs-keyword">var</span> decryptedData = decrypt(encryptedData); <span class="hljs-comment">// 使用解密函数解密数据</span>
+<span class="hljs-keyword">var</span> jsonData = <span class="hljs-built_in">JSON</span>.parse(decryptedData);
+<span class="hljs-built_in">console</span>.log(jsonData);
 </code></pre>
-<p>在这个示例中，我们使用从API获取的JSON数据来渲染React组件。</p>
+<p>在这个示例中，我们对JSON数据进行了加密传输，并在接收端进行解密。</p>
 <h2 id="-">结论</h2>
-<p>通过今天的学习，我们了解了JSON在Web开发中的广泛应用，特别是在APIs、Web服务、AJAX请求和前端框架中。JSON作为一种高效的数据交换格式，对于构建现代Web应用程序至关重要。</p>
-<p>明天，我们将学习识别和处理JSON数据中的常见错误，这将帮助我们编写更健壮的代码，并确保数据的准确性。</p>
+<p>通过今天的学习，我们了解了JSON数据的安全问题，并学习了如何采取防护措施来保护数据的安全。我们学习了输入验证、输出编码、使用HTTPS、访问控制和限制请求频率等方法，并探讨了如何通过加密来保护JSON数据。</p>
+<p>明天，我们将进入高级JSON操作的学习，掌握JavaScript中更高级的JSON操作方法。这将帮助我们更有效地处理和操作JSON数据。</p>
 <hr>
-<p>以上就是我们第七天课程的全部内容。希望您觉得有帮助，并为接下来的学习做好准备。如果您有任何疑问或需要进一步的解释，请随时联系我们。明天见！</p>
+<p>以上就是我们第十一天课程的全部内容。希望您觉得有帮助，并为接下来的学习做好准备。如果您有任何疑问或需要进一步的解释，请随时联系我们。明天见！</p>
 
             </div>
         </div>

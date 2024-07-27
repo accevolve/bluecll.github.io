@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <title>JSON 小白入门教程</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description" content="JSON 小白入门教程，2 周时间快速掌握 JSON 语言及相关工具。" />
+  <meta name="keywords" content="json小白入门教程，json专业教程，json入门学习" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+  <meta name="baidu-site-verification" content="code-K26efHPQnS" />
+
+  <link rel="shortcut icon" href="/img/favicon.ico" />
+  <link rel="bookmark" href="/img/favicon.ico" type="image/x-icon" />
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="../../css/base.v3.css" />
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?267ef29dfb3196f78212c359de75eb55";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+  <!--         <a class="navbar-brand" href="#">
+          <img alt="Brand" src="img/logo.png" height=40 width=200>
+        </a> -->
+          <a class="navbar-brand" href="/" text="Jsontool.cn">Jsontool.cn</a>
+          <!-- <p class="navbar-text">JSON 在线解析、格式化、校验</p> -->
+      </div><!-- /.navbar-header -->
+      <div id="navbar" class="collapse navbar-collapse navbar-right">
+        <ul class="nav navbar-nav">
+          <li><a href="/" target="_blank">首页</a></li>
+          <li><a href="../index.html" target="_blank">教程</a></li>
+          <li><a href="mailto:jsontool@163.com">投诉/建议</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container -->
+  </nav>
+
+
+  <!-- 主要内容区域 -->
+  <main class="row-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 左侧课程目录 -->
+            <div class="col-md-3 p-3 bg-light">
+                <h3>课程目录</h3>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="./index.html">课程介绍</a></li>
+                    <li class="list-group-item"><a href="./json-intro.html">第1天：JSON简介</a></li>
+                    <li class="list-group-item"><a href="./json-syntax.html">第2天：JSON语法基础</a></li>
+                    <li class="list-group-item"><a href="./json-data-type.html">第3天：数据类型</a></li>
+                    <li class="list-group-item"><a href="./json-object-array.html">第4天：对象和数组的深入</a></li>
+                    <li class="list-group-item"><a href="./json-javascript.html">第5天：JSON与JavaScript</a></li>
+                    <li class="list-group-item"><a href="./json-parse-tool.html">第6天：JSON解析工具</a></li>
+                    <li class="list-group-item"><a href="./json-web-develop.html">第7天：JSON与Web开发</a></li>
+                    <li class="list-group-item"><a href="./json-parse-error.html">第8天：错误处理</a></li>
+                    <li class="list-group-item"><a href="./json-schema.html">第9天：JSON Schema</a></li>
+                    <li class="list-group-item"><a href="./json-database.html">第10天：JSON与数据库</a></li>
+                    <li class="list-group-item"><a href="./json-security.html">第11天：JSON安全</a></li>
+                    <li class="list-group-item"><a href="./json-advanced.html">第12天：高级JSON操作</a></li>
+                    <li class="list-group-item"><a href="./json-application.html">第13天：项目实践</a></li>
+                    <li class="list-group-item"><a href="./json-review-lessons.html">第14天：课程复习与总结</a></li>
+                </ul>
+            </div>
+
+            <!-- 右侧具体内容 -->
+            <div class="col-md-9 p-3">
+              <h1 id="-9-json-schema">第9天：JSON Schema</h1>
+<h2 id="-">概述</h2>
+<p>JSON Schema 是一种基于 JSON 的格式，用于描述和验证 JSON 数据结构。它允许定义数据模型，确保数据符合预期的格式和类型。在今天的课程中，我们将了解 JSON Schema 的基本概念、原理，并学习如何使用它来验证 JSON 数据。</p>
+<h2 id="json-schema-">JSON Schema 简介</h2>
+<p>JSON Schema 本身也是一个 JSON 对象，它提供了一种声明式的方式来描述 JSON 数据。通过定义 JSON Schema，我们可以指定数据的类型、格式、是否必填、是否唯一等属性。</p>
+<h3 id="-json-schema">示例：简单的 JSON Schema</h3>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+  <span class="hljs-attr">"properties"</span>: {
+    <span class="hljs-attr">"name"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+    },
+    <span class="hljs-attr">"age"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"integer"</span>,
+      <span class="hljs-attr">"minimum"</span>: <span class="hljs-number">0</span>
+    },
+    <span class="hljs-attr">"email"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"email"</span>
+    }
+  },
+  <span class="hljs-attr">"required"</span>: [<span class="hljs-string">"name"</span>, <span class="hljs-string">"email"</span>]
+}
+</code></pre>
+<p>在这个示例中，我们定义了一个 JSON Schema，描述了一个包含 <code>name</code>、<code>age</code> 和 <code>email</code> 属性的对象。<code>name</code> 和 <code>email</code> 是必填字段，<code>age</code> 是一个非负整数，<code>email</code> 必须是有效的电子邮件地址。</p>
+<h2 id="json-schema-">JSON Schema 的主要组件</h2>
+<h3 id="-type-">类型（Type）</h3>
+<ul>
+<li><code>string</code>：字符串</li>
+<li><code>number</code>：数字</li>
+<li><code>integer</code>：整数</li>
+<li><code>boolean</code>：布尔值</li>
+<li><code>null</code>：null</li>
+<li><code>array</code>：数组</li>
+<li><code>object</code>：对象</li>
+</ul>
+<h3 id="-format-">格式（Format）</h3>
+<ul>
+<li>可以指定字符串的格式，如 <code>email</code>、<code>uri</code>、<code>date-time</code> 等。</li>
+</ul>
+<h3 id="-properties-">属性（Properties）</h3>
+<ul>
+<li>定义对象的属性及其类型。</li>
+</ul>
+<h3 id="-required-">必填（Required）</h3>
+<ul>
+<li>定义对象中哪些属性是必填的。</li>
+</ul>
+<h3 id="-minimum-maximum-">最小值/最大值（Minimum/Maximum）</h3>
+<ul>
+<li>用于定义数值的最小或最大限制。</li>
+</ul>
+<h3 id="-unique-items-">唯一性（Unique Items）</h3>
+<ul>
+<li>确保数组中的元素是唯一的。</li>
+</ul>
+<h2 id="-json-schema-">使用 JSON Schema 验证数据</h2>
+<h3 id="-json-schema-">示例：使用 JSON Schema 验证数据</h3>
+<p>假设我们有以下 JSON 数据：</p>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"John Doe"</span>,
+  <span class="hljs-attr">"age"</span>: <span class="hljs-number">30</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"johndoe@example.com"</span>
+}
+</code></pre>
+<p>我们可以使用之前定义的 JSON Schema 来验证这个数据。如果数据符合 Schema 的定义，验证将通过；否则，将返回验证错误。</p>
+<h3 id="-">示例：验证过程</h3>
+<pre><code class="lang-javascript">var <span class="hljs-keyword">schema</span> = {
+  <span class="hljs-string">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span>,
+  <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
+  <span class="hljs-string">"properties"</span>: {
+    <span class="hljs-string">"name"</span>: {
+      <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>
+    },
+    <span class="hljs-string">"age"</span>: {
+      <span class="hljs-string">"type"</span>: <span class="hljs-string">"integer"</span>,
+      <span class="hljs-string">"minimum"</span>: <span class="hljs-number">0</span>
+    },
+    <span class="hljs-string">"email"</span>: {
+      <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-string">"format"</span>: <span class="hljs-string">"email"</span>
+    }
+  },
+  <span class="hljs-string">"required"</span>: [<span class="hljs-string">"name"</span>, <span class="hljs-string">"email"</span>]
+};
+
+var data = {
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"John Doe"</span>,
+  <span class="hljs-string">"age"</span>: <span class="hljs-number">30</span>,
+  <span class="hljs-string">"email"</span>: <span class="hljs-string">"johndoe@example.com"</span>
+};
+
+var validator = new JSONSchemaValidator();
+var result = validator.validate(data, <span class="hljs-keyword">schema</span>);
+
+<span class="hljs-keyword">if</span> (result.valid) {
+  console.log(<span class="hljs-string">"验证成功"</span>);
+} <span class="hljs-keyword">else</span> {
+  console.log(<span class="hljs-string">"验证失败:"</span>, result.errors);
+}
+</code></pre>
+<p>在这个示例中，我们使用了一个 JSON Schema 验证器（这里假设为 <code>JSONSchemaValidator</code>）来验证数据。如果数据不符合 Schema，将输出验证失败的错误信息。</p>
+<h2 id="-">结论</h2>
+<p>通过今天的学习，我们了解了 JSON Schema 的基本概念和原理，并学习了如何使用它来验证 JSON 数据。我们学习了 JSON Schema 的主要组件，如类型、格式、属性、必填和数值限制，并了解了如何使用 JSON Schema 验证器来执行验证。</p>
+<p>明天，我们将学习如何在数据库中存储和检索 JSON 数据，这将帮助我们更好地理解 JSON 在现代数据库技术中的应用。</p>
+<hr>
+<p>以上就是我们第九天课程的全部内容。希望您觉得有帮助，并为接下来的学习做好准备。如果您有任何疑问或需要进一步的解释，请随时联系我们。明天见！</p>
+
+            </div>
+        </div>
+    </div>
+  </main>
+
+
+<!--footer start-->
+<footer class="float_footer">
+    <div id="copyright">
+        &copy; 2021<script>new Date().getFullYear()>2021&&document.write("-"+new Date().getFullYear());</script> <a href="/">JsonTool.cn</a>, All rights reserved.
+    </div>
+</footer>
+</body>
+</html>
