@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <title>JSON 数据类型详解 - 字符串、数字、布尔值 | JsonTool.cn</title>
 
-  <meta name="description" content="全面介绍 JSON 支持的六种数据类型：字符串、数字、布尔值、null、对象和数组，附示例说明。" />
+  <meta name="description" content="系统讲解JSON的六种数据类型：字符串、数字、布尔值、null、对象和数组，结合合法示例说明双引号、数字格式、嵌套结构及常见语法限制。" />
   <meta name="keywords" content="json数据类型,json字符串,json数组,json对象,json布尔值" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="baidu-site-verification" content="code-K26efHPQnS" />
   <link rel="canonical" href="https://jsontool.cn/courses/beginner/json-data-type" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="JSON 数据类型详解 - 字符串、数字、布尔值 | JsonTool.cn" />
-  <meta property="og:description" content="全面介绍 JSON 支持的六种数据类型：字符串、数字、布尔值、null、对象和数组，附示例说明。" />
+  <meta property="og:description" content="系统讲解JSON的六种数据类型：字符串、数字、布尔值、null、对象和数组，结合合法示例说明双引号、数字格式、嵌套结构及常见语法限制。" />
   <meta property="og:url" content="https://jsontool.cn/courses/beginner/json-data-type" />
   <meta property="og:site_name" content="JsonTool.cn" />
   <meta property="og:locale" content="zh_CN" />
@@ -48,9 +48,9 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "JSON 数据类型详解 - 字符串、数字、布尔值",
-    "description": "全面介绍 JSON 支持的六种数据类型：字符串、数字、布尔值、null、对象和数组，附示例说明。",
+    "description": "系统讲解JSON的六种数据类型：字符串、数字、布尔值、null、对象和数组，结合合法示例说明双引号、数字格式、嵌套结构及常见语法限制。",
     "inLanguage": "zh-CN",
-    "dateModified": "2026-06-24",
+    "dateModified": "2026-07-29",
     "mainEntityOfPage": "https://jsontool.cn/courses/beginner/json-data-type",
     "author": {"@type": "Organization", "name": "JsonTool.cn", "url": "https://jsontool.cn/"},
     "publisher": {"@type": "Organization", "name": "JsonTool.cn", "logo": {"@type": "ImageObject", "url": "https://jsontool.cn/img/logo.png"}}
@@ -110,7 +110,7 @@
             <div class="col-md-9 p-3">
               <h1 id="-3-">第3天：数据类型</h1>
 <h2 id="-">数据类型概览</h2>
-<p>在JSON中，数据的表达方式和数据类型有着严格的规定。掌握JSON支持的数据类型对于创建有效且语义清晰的JSON数据至关重要。今天，我们将深入了解JSON支持的几种基础数据类型：字符串、数字、布尔值、null。</p>
+<p>JSON支持六种数据类型：字符串、数字、布尔值、null、对象和数组。其中前四种是基本值，对象和数组用于组合更复杂的数据结构。</p>
 <h2 id="-string-">字符串（String）</h2>
 <p>字符串是JSON中最常见的数据类型之一，用于表示文本数据。在JSON中，字符串由双引号（<code>&quot;</code>）包围。</p>
 <h3 id="-">示例：字符串</h3>
@@ -149,12 +149,30 @@
 }
 </code></pre>
 <p>这里，<code>email</code>字段被赋值为<code>null</code>，表示用户没有提供电子邮件地址。</p>
+<h2 id="object">对象（Object）</h2>
+<p>对象由一组键值对组成，使用花括号包围。键必须是双引号包围的字符串，值可以是任意JSON数据类型。</p>
+<h3 id="object-example">示例：对象</h3>
+<pre><code class="lang-json">{
+  "user": {
+    "name": "小林",
+    "active": true
+  }
+}
+</code></pre>
+<h2 id="array">数组（Array）</h2>
+<p>数组是一组有顺序的值，使用方括号包围。数组中的元素可以是不同的JSON数据类型。</p>
+<h3 id="array-example">示例：数组</h3>
+<pre><code class="lang-json">{
+  "tags": ["JSON", "API"],
+  "scores": [92, 88, 95]
+}
+</code></pre>
 <h2 id="-">数据类型的应用</h2>
 <p>理解每种数据类型的用途和适用场景对于编写清晰的JSON数据至关重要。例如，当你需要存储一个人的姓名时，应使用字符串类型；当你需要存储年龄时，应使用数字类型；当你需要表示一个开关状态时，布尔值是最佳选择。</p>
 <h2 id="-">深入理解</h2>
-<p>每种数据类型在JSON中都有其特定的规则和限制。例如，字符串中可以包含转义字符，如<code>\n</code>表示换行，<code>\t</code>表示制表符。数字类型在JSON中没有前导零或负号的规则，且不允许使用科学计数法或任何形式的引号。</p>
+<p>每种数据类型都有明确的语法限制。例如，字符串可使用<code>\n</code>表示换行、<code>\t</code>表示制表符。数字可以是负数，也可以使用科学计数法，如<code>-12.5</code>和<code>1.2e3</code>；但不能有无意义的前导零，也不能使用<code>NaN</code>或<code>Infinity</code>。</p>
 <h2 id="-">结论</h2>
-<p>通过今天的学习，我们对JSON支持的数据类型有了全面的了解。我们学习了字符串、数字、布尔值和null的概念和用法，并通过示例加深了理解。这些知识将帮助你在实际开发中正确地使用JSON数据类型。</p>
+<p>通过今天的学习，我们了解了字符串、数字、布尔值、null、对象和数组这六种JSON数据类型，并通过示例掌握了它们的基本语法。这些知识将帮助你在实际开发中正确地设计JSON数据。</p>
 <p>明天，我们将进入更深入的主题——对象和数组的嵌套。这将是一个挑战，但也是一个提高你JSON技能的绝佳机会。请继续关注，准备好迎接新的学习内容！</p>
 <hr>
 <p>以上就是我们第三天课程的全部内容。希望您觉得有帮助，并为接下来的学习做好准备。如果您有任何疑问或需要进一步的解释，请随时联系我们。明天见！</p>

@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <title>JSON 与 JavaScript - parse 和 stringify 方法 | JsonTool.cn</title>
 
-  <meta name="description" content="学习在 JavaScript 中使用 JSON.parse() 和 JSON.stringify() 方法进行 JSON 数据的解析与序列化。" />
+  <meta name="description" content="学习JavaScript中的JSON.parse()与JSON.stringify()，掌握解析、序列化、嵌套数据处理，以及Date、函数和循环引用等常见边界情况。" />
   <meta name="keywords" content="json javascript,json.parse,json.stringify,js解析json,javascript json" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="baidu-site-verification" content="code-K26efHPQnS" />
   <link rel="canonical" href="https://jsontool.cn/courses/beginner/json-javascript" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="JSON 与 JavaScript - parse 和 stringify 方法 | JsonTool.cn" />
-  <meta property="og:description" content="学习在 JavaScript 中使用 JSON.parse() 和 JSON.stringify() 方法进行 JSON 数据的解析与序列化。" />
+  <meta property="og:description" content="学习JavaScript中的JSON.parse()与JSON.stringify()，掌握解析、序列化、嵌套数据处理，以及Date、函数和循环引用等常见边界情况。" />
   <meta property="og:url" content="https://jsontool.cn/courses/beginner/json-javascript" />
   <meta property="og:site_name" content="JsonTool.cn" />
   <meta property="og:locale" content="zh_CN" />
@@ -48,9 +48,9 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "JSON 与 JavaScript - parse 和 stringify 方法",
-    "description": "学习在 JavaScript 中使用 JSON.parse() 和 JSON.stringify() 方法进行 JSON 数据的解析与序列化。",
+    "description": "学习JavaScript中的JSON.parse()与JSON.stringify()，掌握解析、序列化、嵌套数据处理，以及Date、函数和循环引用等常见边界情况。",
     "inLanguage": "zh-CN",
-    "dateModified": "2026-06-24",
+    "dateModified": "2026-07-29",
     "mainEntityOfPage": "https://jsontool.cn/courses/beginner/json-javascript",
     "author": {"@type": "Organization", "name": "JsonTool.cn", "url": "https://jsontool.cn/"},
     "publisher": {"@type": "Organization", "name": "JsonTool.cn", "logo": {"@type": "ImageObject", "url": "https://jsontool.cn/img/logo.png"}}
@@ -144,7 +144,7 @@ console.<span class="hljs-built_in">log</span>(jsonString);
 <h2 id="-">深入解析与生成</h2>
 <ul>
 <li><strong>复杂数据结构</strong>：JavaScript可以解析包含嵌套对象和数组的复杂JSON结构。</li>
-<li><strong>函数和日期</strong>：由于JSON规范的限制，JavaScript中的函数和日期对象在转换为JSON时不会被直接序列化。对于这些特殊情况，需要特别的处理方法。</li>
+<li><strong>函数和日期</strong>：对象属性中的函数会被省略，数组中的函数会被转换为<code>null</code>；<code>Date</code>对象通常会通过<code>toJSON()</code>转换为ISO格式字符串，解析后不会自动还原为<code>Date</code>对象。</li>
 <li><strong>循环引用</strong>：如果对象中存在循环引用，<code>JSON.stringify()</code>方法将抛出错误。</li>
 </ul>
 <h3 id="-">示例：处理循环引用</h3>

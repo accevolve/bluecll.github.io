@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>JSON 校验 - 在线JSON语法检查工具 | JsonTool.cn</title>
 
-  <meta name="description" content="免费在线 JSON 校验工具，基于 JSONLint 标准检查 JSON 语法正确性，精确定位错误行号和原因。支持实时校验，粘贴即出结果，开发者调试 JSON 数据的必备工具。" />
+  <meta name="description" content="免费在线JSON校验工具，依据RFC 8259检查JSON语法，显示解析错误及行列位置，并保留大整数原始精度。数据仅在浏览器本地处理，不会上传服务器。" />
   <meta name="keywords" content="json校验,json语法检查,json校验工具,json在线校验,jsonlint,json语法校验,json验证,json检查,在线json校验工具" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="applicable-device" content="pc,mobile" />
@@ -13,7 +13,7 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="JSON 校验 - 在线JSON语法检查工具 | JsonTool.cn" />
-  <meta property="og:description" content="免费在线 JSON 校验工具，基于 JSONLint 标准检查语法正确性，精确定位错误。" />
+  <meta property="og:description" content="免费在线JSON校验工具，依据RFC 8259检查JSON语法，显示解析错误及行列位置，并保留大整数原始精度。数据仅在浏览器本地处理，不会上传服务器。" />
   <meta property="og:url" content="https://jsontool.cn/json-validate" />
   <meta property="og:site_name" content="JsonTool.cn" />
   <meta property="og:locale" content="zh_CN" />
@@ -29,7 +29,7 @@
     "@type": "WebApplication",
     "name": "JSON 校验工具",
     "url": "https://jsontool.cn/json-validate",
-    "description": "免费在线 JSON 语法校验工具，基于 JSONLint 标准",
+    "description": "免费在线JSON校验工具，依据RFC 8259检查JSON语法，显示解析错误及行列位置，并保留大整数原始精度。数据仅在浏览器本地处理，不会上传服务器。",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "All",
     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "CNY"}
@@ -161,7 +161,7 @@
 <section class="seo-content">
   <div class="seo-inner">
   <h1>JSON 在线校验工具</h1>
-  <p>JsonTool.cn 提供专业的 <strong>JSON 校验</strong>服务，基于 JSONLint 标准对 JSON 数据进行严格的语法检查。将 JSON 粘贴到输入框，工具会实时校验并标注「✓ 校验通过」或「✗ 校验失败」及具体错误信息。</p>
+  <p>JsonTool.cn提供专业的<strong>JSON校验</strong>服务，依据JSON语法规则检查数据。将JSON粘贴到输入框后，合法数据会在右侧显示格式化结果；不合法数据会显示解析错误、行列位置和原因提示。</p>
 
   <h2>JSON 校验规则</h2>
   <p>本工具依据 <strong>RFC 8259</strong>（JSON 数据交换格式标准）进行校验，主要检查以下规则：</p>
@@ -179,7 +179,7 @@
   <ol>
     <li>查看错误提示中的行号和字符位置</li>
     <li>检查该位置附近是否存在缺少引号、多余逗号等问题</li>
-    <li>修正后重新粘贴校验，直到显示「✓ 校验通过」</li>
+    <li>修正后重新粘贴校验，直到右侧正常显示格式化结果</li>
     <li>如果 JSON 来自程序生成，检查序列化代码是否使用了标准库</li>
   </ol>
 

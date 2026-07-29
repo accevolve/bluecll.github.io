@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <title>JSON 实战项目 - 综合应用练习 | JsonTool.cn</title>
 
-  <meta name="description" content="通过实战项目巩固 JSON 知识，包括 API 对接、配置文件编写、数据处理等综合练习。" />
+  <meta name="description" content="通过一个课程列表小项目练习设计JSON数组、编写HTML结构，并使用JavaScript读取数据、创建DOM节点和渲染课程名称与讲师信息。" />
   <meta name="keywords" content="json实战,json项目,json应用,json练习,json实践" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="baidu-site-verification" content="code-K26efHPQnS" />
   <link rel="canonical" href="https://jsontool.cn/courses/beginner/json-application" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="JSON 实战项目 - 综合应用练习 | JsonTool.cn" />
-  <meta property="og:description" content="通过实战项目巩固 JSON 知识，包括 API 对接、配置文件编写、数据处理等综合练习。" />
+  <meta property="og:description" content="通过一个课程列表小项目练习设计JSON数组、编写HTML结构，并使用JavaScript读取数据、创建DOM节点和渲染课程名称与讲师信息。" />
   <meta property="og:url" content="https://jsontool.cn/courses/beginner/json-application" />
   <meta property="og:site_name" content="JsonTool.cn" />
   <meta property="og:locale" content="zh_CN" />
@@ -48,9 +48,9 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "JSON 实战项目 - 综合应用练习",
-    "description": "通过实战项目巩固 JSON 知识，包括 API 对接、配置文件编写、数据处理等综合练习。",
+    "description": "通过一个课程列表小项目练习设计JSON数组、编写HTML结构，并使用JavaScript读取数据、创建DOM节点和渲染课程名称与讲师信息。",
     "inLanguage": "zh-CN",
-    "dateModified": "2026-06-24",
+    "dateModified": "2026-07-29",
     "mainEntityOfPage": "https://jsontool.cn/courses/beginner/json-application",
     "author": {"@type": "Organization", "name": "JsonTool.cn", "url": "https://jsontool.cn/"},
     "publisher": {"@type": "Organization", "name": "JsonTool.cn", "logo": {"@type": "ImageObject", "url": "https://jsontool.cn/img/logo.png"}}
@@ -112,7 +112,7 @@
 <h2 id="-">概述</h2>
 <p>经过12天的学习，我们已经掌握了JSON的基础知识和高级操作技巧。现在是时候将这些知识应用到实际项目中了。今天的课程将引导你完成一个小型项目，实践所学的技能。</p>
 <h2 id="-">项目目标</h2>
-<p>我们的目标是创建一个简单的Web应用程序，该应用程序能够展示一个在线课程的列表，并允许用户查看每个课程的详细信息。我们将使用JSON来存储课程数据，并使用JavaScript和HTML来展示这些数据。</p>
+<p>我们的目标是创建一个简单的Web页面：用JSON数组保存课程数据，再通过JavaScript把课程名称和讲师信息渲染为列表。查看详情、搜索和远程API将在最后作为扩展练习。</p>
 <h2 id="-">项目步骤</h2>
 <h3 id="-1-">步骤1：设计课程数据</h3>
 <p>首先，我们需要设计课程数据的JSON结构。我们将创建一个包含多个课程对象的数组，每个课程对象包含课程名称、描述和讲师信息。</p>
@@ -139,7 +139,7 @@
 ]
 </code></pre>
 <h3 id="-2-html-">步骤2：创建HTML结构</h3>
-<p>接下来，我们需要创建一个HTML页面，用于展示课程列表和详细信息。</p>
+<p>接下来，我们需要创建一个HTML页面，并预留用于展示课程列表的容器。</p>
 <h4 id="-html-">示例：HTML结构</h4>
 <pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"zh-CN"</span>&gt;</span>

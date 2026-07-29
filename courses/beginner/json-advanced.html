@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <title>JSON 高级操作 - JSONPath、数据转换与处理 | JsonTool.cn</title>
 
-  <meta name="description" content="掌握 JSON 高级操作技巧，包括 JSONPath 查询、数据转换、大型 JSON 文件处理等进阶内容。" />
+  <meta name="description" content="进阶学习JSONPath查询、对象与数组转换、序列化、结构比较及大型JSON处理策略，配合JavaScript示例说明适用场景、限制和常见陷阱。" />
   <meta name="keywords" content="json高级,jsonpath,json数据转换,json处理,json进阶" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="baidu-site-verification" content="code-K26efHPQnS" />
   <link rel="canonical" href="https://jsontool.cn/courses/beginner/json-advanced" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="JSON 高级操作 - JSONPath、数据转换与处理 | JsonTool.cn" />
-  <meta property="og:description" content="掌握 JSON 高级操作技巧，包括 JSONPath 查询、数据转换、大型 JSON 文件处理等进阶内容。" />
+  <meta property="og:description" content="进阶学习JSONPath查询、对象与数组转换、序列化、结构比较及大型JSON处理策略，配合JavaScript示例说明适用场景、限制和常见陷阱。" />
   <meta property="og:url" content="https://jsontool.cn/courses/beginner/json-advanced" />
   <meta property="og:site_name" content="JsonTool.cn" />
   <meta property="og:locale" content="zh_CN" />
@@ -48,9 +48,9 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "JSON 高级操作 - JSONPath、数据转换与处理",
-    "description": "掌握 JSON 高级操作技巧，包括 JSONPath 查询、数据转换、大型 JSON 文件处理等进阶内容。",
+    "description": "进阶学习JSONPath查询、对象与数组转换、序列化、结构比较及大型JSON处理策略，配合JavaScript示例说明适用场景、限制和常见陷阱。",
     "inLanguage": "zh-CN",
-    "dateModified": "2026-06-24",
+    "dateModified": "2026-07-29",
     "mainEntityOfPage": "https://jsontool.cn/courses/beginner/json-advanced",
     "author": {"@type": "Organization", "name": "JsonTool.cn", "url": "https://jsontool.cn/"},
     "publisher": {"@type": "Organization", "name": "JsonTool.cn", "logo": {"@type": "ImageObject", "url": "https://jsontool.cn/img/logo.png"}}
@@ -110,7 +110,24 @@
             <div class="col-md-9 p-3">
               <h1 id="-12-json-">第12天：高级JSON操作</h1>
 <h2 id="-">概述</h2>
-<p>随着我们对JSON的深入理解，今天我们将探索JavaScript中更高级的JSON操作方法。这些方法将帮助我们更有效地处理和操作JSON数据，提高我们的开发效率和代码质量。</p>
+<p>随着我们对JSON的深入理解，今天将学习JSONPath查询、对象与数组转换、序列化、结构比较及大型JSON处理策略。除了操作方法，我们也会说明这些方案的限制，避免在真实项目中误用。</p>
+<h2 id="jsonpath">使用JSONPath查询数据</h2>
+<p>JSONPath是一类用于定位JSON节点的查询表达式，作用类似于XML中的XPath。以下面的数据为例：</p>
+<pre><code class="lang-json">{
+  "users": [
+    {"name": "小林", "active": true},
+    {"name": "小周", "active": false}
+  ],
+  "store": {"book": [{"title": "JSON入门", "price": 39}]}
+}
+</code></pre>
+<ul>
+  <li><code>$</code>表示根节点。</li>
+  <li><code>$.users[*].name</code>选择所有用户的姓名。</li>
+  <li><code>$..price</code>递归选择任意层级中的<code>price</code>字段。</li>
+  <li><code>$.users[?(@.active == true)]</code>筛选启用状态的用户。</li>
+</ul>
+<p>JSONPath不是JavaScript的原生API，需要使用第三方库或运行环境提供的实现。不同实现对过滤器、函数和转义语法的支持可能不同，投入生产前应以所用库的文档和测试结果为准。</p>
 <h2 id="json-">JSON对象的高级操作</h2>
 <p>在JavaScript中，除了基本的创建和访问JSON对象的方法外，还有一些高级操作可以帮助我们更灵活地处理数据。</p>
 <h3 id="-object-keys-object-values-">使用<code>Object.keys()</code>和<code>Object.values()</code></h3>
@@ -171,10 +188,19 @@ console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">sum</
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> obj1 = { <span class="hljs-attr">name</span>: <span class="hljs-string">"John"</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> };
 <span class="hljs-keyword">var</span> obj2 = { <span class="hljs-attr">age</span>: <span class="hljs-number">30</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">"John"</span> };
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj1) === <span class="hljs-built_in">JSON</span>.stringify(obj2)); <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj1) === <span class="hljs-built_in">JSON</span>.stringify(obj2)); <span class="hljs-comment">// false</span>
 </code></pre>
+<p><code>JSON.stringify()</code>生成的字符串受属性顺序影响，因此不能直接判断两个对象在结构和值上是否等价。需要语义比较时，应使用经过验证的深度比较函数；需要生成稳定文本或签名时，应先按照约定对对象键进行递归排序。</p>
+<h2 id="large-json">大型JSON处理策略</h2>
+<p>大型JSON文件会同时占用原始文本、解析对象和渲染结果所需的内存。文件越大，直接调用<code>JSON.parse()</code>并一次性渲染全部节点，越容易造成页面卡顿或进程内存不足。</p>
+<ul>
+  <li><strong>服务端或Node.js</strong>：优先采用流式解析器，逐条处理数组元素或事件，避免一次加载完整文件。</li>
+  <li><strong>浏览器</strong>：可把解析工作放入Web Worker，并对列表分页、分块或虚拟化渲染，减少主线程阻塞。</li>
+  <li><strong>数据流程</strong>：避免在循环中反复执行<code>JSON.parse()</code>和<code>JSON.stringify()</code>，只保留当前步骤必需的数据。</li>
+  <li><strong>工具边界</strong>：浏览器在线工具仍受设备内存限制；超大文件或敏感数据更适合在本地脚本或受控服务中处理。</li>
+</ul>
 <h2 id="-">结论</h2>
-<p>通过今天的学习，我们掌握了JavaScript中高级的JSON操作方法，包括对象和数组的操作、序列化和反序列化、以及数据的比较。这些技能将帮助我们在实际开发中更有效地处理JSON数据。</p>
+<p>通过今天的学习，我们掌握了JSONPath查询、对象和数组转换、序列化与反序列化、结构比较及大型JSON处理的基本策略。选择方案时，应同时考虑运行环境、数据规模和所用库的能力边界。</p>
 <p>明天，我们将进入项目实践的环节，将所学知识应用到一个小项目中。这将是一个检验我们学习成果的好机会。</p>
 <hr>
 <p>以上就是我们第十二天课程的全部内容。希望您觉得有帮助，并为接下来的学习做好准备。如果您有任何疑问或需要进一步的解释，请随时联系我们。明天见！</p>

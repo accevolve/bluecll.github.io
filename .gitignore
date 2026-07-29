@@ -3,3 +3,6 @@
 # 本地运营物料（不上传）
 /local/
 .local
+
+# ESA 构建时生成的 IndexNow 验证文件
+/*-indexnow.txt

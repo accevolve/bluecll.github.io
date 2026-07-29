@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <title>JSON 与数据库 - MySQL、MongoDB 中的 JSON | JsonTool.cn</title>
 
-  <meta name="description" content="了解 JSON 在关系型数据库（MySQL）和 NoSQL 数据库（MongoDB）中的存储与查询方式。" />
+  <meta name="description" content="介绍MongoDB、MySQL和PostgreSQL中的JSON存储与查询，涵盖文档插入、JSON/JSONB字段、路径查询与索引，并说明三类数据库的适用差异。" />
   <meta name="keywords" content="json数据库,mysql json,mongodb json,json存储,数据库json" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="baidu-site-verification" content="code-K26efHPQnS" />
   <link rel="canonical" href="https://jsontool.cn/courses/beginner/json-database" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="JSON 与数据库 - MySQL、MongoDB 中的 JSON | JsonTool.cn" />
-  <meta property="og:description" content="了解 JSON 在关系型数据库（MySQL）和 NoSQL 数据库（MongoDB）中的存储与查询方式。" />
+  <meta property="og:description" content="介绍MongoDB、MySQL和PostgreSQL中的JSON存储与查询，涵盖文档插入、JSON/JSONB字段、路径查询与索引，并说明三类数据库的适用差异。" />
   <meta property="og:url" content="https://jsontool.cn/courses/beginner/json-database" />
   <meta property="og:site_name" content="JsonTool.cn" />
   <meta property="og:locale" content="zh_CN" />
@@ -48,9 +48,9 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "JSON 与数据库 - MySQL、MongoDB 中的 JSON",
-    "description": "了解 JSON 在关系型数据库（MySQL）和 NoSQL 数据库（MongoDB）中的存储与查询方式。",
+    "description": "介绍MongoDB、MySQL和PostgreSQL中的JSON存储与查询，涵盖文档插入、JSON/JSONB字段、路径查询与索引，并说明三类数据库的适用差异。",
     "inLanguage": "zh-CN",
-    "dateModified": "2026-06-24",
+    "dateModified": "2026-07-29",
     "mainEntityOfPage": "https://jsontool.cn/courses/beginner/json-database",
     "author": {"@type": "Organization", "name": "JsonTool.cn", "url": "https://jsontool.cn/"},
     "publisher": {"@type": "Organization", "name": "JsonTool.cn", "logo": {"@type": "ImageObject", "url": "https://jsontool.cn/img/logo.png"}}
@@ -110,11 +110,11 @@
             <div class="col-md-9 p-3">
               <h1 id="-10-json-">第10天：JSON与数据库</h1>
 <h2 id="-">概述</h2>
-<p>随着NoSQL数据库的兴起，JSON已经成为存储和检索数据的流行格式。在今天的课程中，我们将探讨如何在数据库中存储和检索JSON数据，以及这种格式在数据库操作中的优势和挑战。</p>
+<p>现代文档数据库和关系型数据库都能处理JSON形态的数据。今天将分别介绍MongoDB文档、MySQL的JSON字段和PostgreSQL的JSONB字段，并说明查询和索引方式的差异。</p>
 <h2 id="json-nosql-">JSON与NoSQL数据库</h2>
 <p>NoSQL数据库是一种不依赖于SQL语言的数据库，它们通常支持存储半结构化数据，如JSON。这些数据库能够灵活地处理不断变化的数据结构。</p>
 <h3 id="-mongodb-json-">示例：MongoDB中的JSON数据</h3>
-<p>MongoDB是一个流行的NoSQL数据库，它将数据存储为文档，这些文档本质上是JSON对象。</p>
+<p>MongoDB是一个流行的NoSQL数据库，数据实际以BSON文档存储，操作时通常使用与JSON相似的对象语法。BSON还支持日期、二进制等JSON规范之外的数据类型。</p>
 <h4 id="-mongodb-json-">示例：在MongoDB中插入JSON数据</h4>
 <pre><code class="lang-javascript">db.collection.insertOne({
 <span class="hljs-symbol">  name:</span> <span class="hljs-string">"John Doe"</span>,
@@ -127,14 +127,29 @@
 <span class="hljs-symbol">  hobbies:</span> [<span class="hljs-string">"reading"</span>, <span class="hljs-string">"cycling"</span>, <span class="hljs-string">"hiking"</span>]
 });
 </code></pre>
-<p>在这个示例中，我们向MongoDB的集合中插入了一个包含个人信息的JSON对象。</p>
+<p>在这个示例中，我们向MongoDB集合插入了一个包含个人信息的BSON文档。</p>
 <h2 id="json-">JSON与关系型数据库</h2>
 <p>传统上，关系型数据库使用固定的表结构来存储数据。然而，许多关系型数据库现在也支持JSON数据类型，允许在单个列中存储JSON对象。</p>
+<h3 id="mysql-json">示例：MySQL中的JSON数据</h3>
+<p>MySQL提供原生<code>JSON</code>字段，会校验写入内容是否为合法JSON。下面创建表并插入一条记录：</p>
+<pre><code class="lang-sql">CREATE TABLE users (
+  id BIGINT PRIMARY KEY,
+  data JSON NOT NULL
+);
+
+INSERT INTO users (id, data) VALUES
+(1, '{"name": "John Doe", "age": 30}');
+</code></pre>
 <h3 id="-postgresql-json-">示例：PostgreSQL中的JSON数据</h3>
-<p>PostgreSQL是一个支持JSON数据类型的关系型数据库。</p>
+<p>PostgreSQL同时支持<code>JSON</code>和<code>JSONB</code>。需要频繁查询和索引时通常选用<code>JSONB</code>，因为它以可处理的二进制结构存储数据。</p>
 <h4 id="-postgresql-json-">示例：在PostgreSQL中插入JSON数据</h4>
-<pre><code class="lang-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">users</span> (<span class="hljs-keyword">id</span>, <span class="hljs-keyword">data</span>) <span class="hljs-keyword">VALUES</span>
-(<span class="hljs-number">1</span>, <span class="hljs-string">'{"name": "John Doe", "age": 30}'</span>);
+<pre><code class="lang-sql">CREATE TABLE users (
+  id BIGINT PRIMARY KEY,
+  data JSONB NOT NULL
+);
+
+INSERT INTO users (id, data) VALUES
+(1, '{"name": "John Doe", "age": 30}');
 </code></pre>
 <p>在这个示例中，我们将一个JSON对象存储在<code>users</code>表的<code>data</code>列中。</p>
 <h2 id="-json-">查询JSON数据</h2>
@@ -143,6 +158,12 @@
 <pre><code class="lang-javascript">db.collection.<span class="hljs-built_in">find</span>({<span class="hljs-string">"address.city"</span>: <span class="hljs-string">"Anytown"</span>});
 </code></pre>
 <p>在这个示例中，我们查询了所有地址城市为&quot;Anytown&quot;的文档。</p>
+<h3 id="mysql-query">示例：在MySQL中查询JSON数据</h3>
+<pre><code class="lang-sql">SELECT *
+FROM users
+WHERE CAST(data-&gt;&gt;'$.age' AS UNSIGNED) = 30;
+</code></pre>
+<p><code>-&gt;&gt;</code>会提取指定路径的标量文本；这里再转换为整数进行数值比较。</p>
 <h3 id="-postgresql-json-">示例：在PostgreSQL中查询JSON数据</h3>
 <pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">data</span> @&gt; <span class="hljs-string">'{"age": 30}'</span>;
 </code></pre>
@@ -153,12 +174,21 @@
 <pre><code class="lang-javascript">db.collection.createIndex({<span class="hljs-string">"address.city"</span>: <span class="hljs-number">1</span>})<span class="hljs-comment">;</span>
 </code></pre>
 <p>在这个示例中，我们为<code>address.city</code>字段创建了一个索引。</p>
+<h3 id="mysql-index">示例：在MySQL中为JSON路径创建索引</h3>
+<pre><code class="lang-sql">ALTER TABLE users
+  ADD COLUMN age INT
+    GENERATED ALWAYS AS (
+      CAST(data-&gt;&gt;'$.age' AS UNSIGNED)
+    ) STORED,
+  ADD INDEX idx_users_age (age);
+</code></pre>
+<p>这个示例把JSON中的<code>age</code>提取为生成列，再对生成列建立普通索引。实际项目应只为稳定且经常查询的路径建立索引。</p>
 <h3 id="-postgresql-json-">示例：在PostgreSQL中为JSON数据创建索引</h3>
 <pre><code class="lang-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_users_age <span class="hljs-keyword">ON</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">USING</span> gin (<span class="hljs-keyword">data</span> jsonb_path_ops);
 </code></pre>
-<p>在这个示例中，我们为<code>data</code>列中的<code>age</code>路径创建了一个GIN索引。</p>
+<p>这个GIN索引用于加速<code>data</code>列上的JSONB包含查询，并不是只索引<code>age</code>路径。若查询长期集中在单一路径，也可以针对提取表达式建立更小的B-tree索引。</p>
 <h2 id="-">结论</h2>
-<p>通过今天的学习，我们了解了如何在数据库中存储和检索JSON数据。我们学习了NoSQL和关系型数据库对JSON的支持，以及如何查询和优化JSON数据。</p>
+<p>通过今天的学习，我们了解了MongoDB、MySQL和PostgreSQL存储、查询及索引JSON形态数据的基本方式。数据库选择与索引设计应根据数据结构是否稳定、查询模式和一致性要求决定，而不是仅因为数据看起来像JSON。</p>
 <p>明天，我们将讨论JSON数据的安全问题和防护措施，这将帮助我们确保数据的安全性和完整性。</p>
 <hr>
 <p>以上就是我们第十天课程的全部内容。希望您觉得有帮助，并为接下来的学习做好准备。如果您有任何疑问或需要进一步的解释，请随时联系我们。明天见！</p>
